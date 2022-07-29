@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+<!-- page Title -->
+{% block pageTitle%} Anomalie and Arrondissement {%endblock%}
+
+<!-- page header -->
+<!-- {% block headerTitle%}
+
+{%endblock%} -->
+
+
+<!-- page header Content -->
+{%block headerContent%}
+  <div class="container bg-light my-4 p-2 bounce-in-top bg-opacity-75">
+    <div class="navbar navbar-expand-lg rounded">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <!-- drop down one -->
+          <ul class="navbar-nav my-2 navbar-nav-scroll mx-auto">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Anomalie
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                {% for type in list_anomalie %}
+                <li><a class="dropdown-item" href="?anomalie={{ type }}"> {{ type }} </a></li>
+                {% endfor %}
+              </ul>
+            </li>
+            <!-- dropdown two -->
+            <li class="nav-item dropdown mx-5">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Arrondissement
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item active" href="/question2/Janvier"> Janvier </a></li>
+                <li><a class="dropdown-item" href="/question2/Février"> Février</a></li>
+                <li><a class="dropdown-item" href="/question2/Mars"> Mars </a></li>
+                <li><a class="dropdown-item" href="/question2/Avril"> Avril </a></li>
+                <li><a class="dropdown-item" href="/question2/Mai"> Mai </a></li>
+                <li><a class="dropdown-item" href="/question2/Juin"> Juin </a></li>
+                <li><a class="dropdown-item" href="/question2/Juillet"> Juillet </a></li>
+                <li><a class="dropdown-item" href="/question2/Août"> Août </a></li>
+                <li><a class="dropdown-item" href="/question2/Septembre"> Septembre </a></li>
+                <li><a class="dropdown-item" href="/question2/Octobre"> Octobre </a></li>
+                <li><a class="dropdown-item" href="/question2/Novembre"> Novembre </a></li>
+                <li><a class="dropdown-item" href="/question2/Décembre"> Décembre </a></li>
+              </ul>
+            </li>
+            <!-- drop down three -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Years
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                <li><a class="dropdown-item" href="#">2021</a></li>
+                <li><a class="dropdown-item" href="#">2022</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+{%endblock%}
+
+<!-- page body -->
+{% block Content%} 
+<div class="container">
+  <div class="containerHead">
+    <h4>DATA</h4>
+    <p>page .{{ context.pk }}.</p>
+  </div>
+  <div class="contentOne">
+    <div class="row">
+      <div class="col col-md-5 mx-2 rounded">
+        <table class="table my-2 p-2 text-white">
+          <thead>
+            <th>mois de declaration</th>
+            <th>2021</th>
+            <th>2022</th>
+          </thead>
+          <tbody>
+            {% if id == 0 %}
+            {% for key, value in data_type.items %} 
+                    <tr>
+                    <td>{{ key }}</th>
+                    {% for year, qty in value.items %}
+                        <td>{{ qty }}</th>
+                    {% endfor %}  
+                    </tr>
+                {% endfor %} 
+          {% elif id == 1 %}
+          {% for i in data %}
+            <tr>
+              <td>{{ i.mois_declaration }}</td>
+              <td>{{ i.2021 }}</td>
+              <td>{{ i.2022 }}</td>
+            </tr>
+          {% endfor %}
+          {% endif %}
+          </tbody>
+        </table>
+      </div>
+      {% if id == 0 %}
+      <div class="col col-md-6 rounded">
+        <img src = '{{ img.0 | safe}}' class="img-thumbnail" alt=raté>
+      </div>
+      <div class="col col-md-4 rounded my-3">
+        <img src = '{{ img.1 | safe }}' class="img-thumbnail" alt=raté>
+      </div>
+      {% elif id == 1 %}
+      <div class="col col-md-6 rounded">
+        <img src = '{{ img.0 | safe}}' class="img-thumbnail" alt=raté>
+      </div>
+      <div class="col col-md-4 rounded my-3">
+        <img src = '{{ img.1 | safe }}' class="img-thumbnail" alt=raté>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="clickBtn">
+    <a href="/home" class="btn btn-secondary my-3 btn-lg" role="button">Go Back</a>
+  </div>
+</div>
+{%endblock%}

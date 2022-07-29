@@ -1,0 +1,5 @@
+### 06/07/2022
+Description : Problème de merge conflict et de pull.
+Remote repo était vide car deux .git se sont retrouvé à l'intérieur.
+
+Solution : Pull, merge and résoudre les conflits. Refaire la meme chose pour son collègue.

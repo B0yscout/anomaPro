@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+
+<style>
+  .gmap_canvas {
+    overflow:hidden;
+    background:none!important;
+    height:500px;
+    width:600px;
+  }
+</style>
+
+
+<!-- page title -->
+{%block pageTitle%} Question Page 1{%endblock%}
+
+<!-- page header title -->
+{%block headerTitle%} 
+<div class="logoTab">
+  <div class="container d-flex align-items-center justify-content-center flex-row my-3">
+    <h2>Anomalie</h2>
+    <div class="logo mx-3 border-5 border-white">
+      <a href="/">
+        <img src="https://cdn.dribbble.com/users/2524031/screenshots/13961394/media/fe0cbee48954b7335a47e539c3e2579a.png?compress=1&resize=1000x750&vertical=top"  alt="">
+      </a>
+    </div>
+    <h2>Paris</h2>
+  </div>
+</div>
+{%endblock%}
+
+<!-- page header content -->
+{%block headerContent%}
+<div class="container sticky-top bounce-in-top">
+  <div class="navbar navbar-expand-sm rounded" style="z-index: 90;">
+    <div class="container-fluid">
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <!-- drop down one -->
+        <ul class="navbar-nav my-2 navbar-nav-scroll mx-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Anomalie
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <!-- {%for key in list_anomalie%}
+              <li><a class="dropdown-item" href="/anomalie">{{ key }}</a></li>
+              {%endfor%} -->
+              <li><a class="dropdown-item" href="/question3/?anomalie=Objets%20abandonnés"> Objets abandonnés </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Graffitis,%20tags,%20affiches%20et%20autocollants"> Graffitis, tags, affiches et autocollants </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Autos,%20motos,%20vélos..."> Autos, motos, vélos... </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Mobiliers%20urbains"> Mobiliers urbains </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Propreté"> Propreté </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Éclairage,%20Électricité"> Éclairage / Électricité </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Voirie%20et%20espace%20public"> Voirie et espace public </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Activités%20commerciales%20et%20professionnelles"> Activités commerciales et professionnelles </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Eau"> Eau </a></li>
+              <li><a class="dropdown-item" href="/question3/?anomalie=Arbres,%20végétaux%20et%20animaux"> Arbres, végétaux et animaux </a></li>
+            </ul>
+          </li>
+          <!-- dropdown two -->
+          <li class="nav-item dropdown mx-5">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Arrondissement
+            </a>
+            <ul class="dropdown-menu menu1" aria-labelledby="navbarScrollingDropdown">
+              {% for key, value in data.items %} 
+              <li><a class="dropdown-item" href="/question1/{{key}}"> {{key}}e Arrondissement</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+
+<!-- body content -->
+{%block Content%}
+<div class="container">
+  <div class="mt-5">
+    <h4>Recensement</h4>
+    <div class=" ps-5 mt-3">
+      <p>Le Projet dans ma rue a été mis à disposition des parisiens à partir de Mars 2021.</p> 
+
+      <p>Depuis, l'arrondissement ayant détecté le plus d'anomalies est le <span class="text-danger">{{ max_val.1 }}ème</span>  avec près de <span class="text-primary">{{ max_val.0 }}</span> anomalies en <span class="fw-semibold">{{ max_key }}</span>. </p>
+
+      <p>Tandis que le <span class="text-danger">{{ min_val.1 }}ème</span> arrondissement est celui avec le moins d'anomalie avec <span class="text-primary">{{ min_val.0 }}</span>  détectés en <span class="fw-semibold">{{ min_key }}</span>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="modelImage h-100" style="z-index: 100;">
+  <div class="container d-flex align-items-center justify-content-center">
+      <div class="fullImage text-white p-5 w-50 h-50">
+        <img src="" class="imgShow" alt="">
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="questionHead mt-5 fs-6 fw-semibold">
+    <div class="container">
+      <p>
+        Quantité d'anomalies par arrondissement et par année.
+      </p>
+    </div>
+  </div>
+  <div class="mainContent text-center position-relative">
+    <div class="row">
+      <div class="col1 col-lg-6  mx-auto rounded text-center p-0 bg-white" data-aos="fade-right" data-aos-duration="1000">
+        <table class="table fs-6 fw-lighter text-white table-hover">
+          <thead class="text-center bg-success sticky-top">
+              <th class="pb-3">Arrondissement</th>
+              <th class="pb-3">2021</th>
+              <th class="pb-3">2022</th>
+            <!-- <tr>Arrondissement</tr>
+              <tr>Nombre_anomalies</tr> -->
+            </thead>
+            <tbody>
+              {% if data %}
+              {% for key, value in data.items %} 
+                <tr class="text-center text-dark my-3">
+                    <td class="p-3 ">{{key}}</td>
+                    {% for year,qty in value.items %}
+                    <td class="p-3">{{qty}}</td>
+                    {% endfor %}      
+                </tr>
+              {% endfor %}
+            {% endif %}           
+          </tbody>
+        </table>
+      </div>
+      <div class="col2 col-lg-5  mx-auto my-2 py-3 text-center" data-aos="fade-left" data-aos-duration="1000">
+        <h4 class="mb-4 text-dark">Graph(pie) </h4>
+            <div class="imageContent shadow-lg" id="image_bg" >
+              <img src = '{{ img.0 }}' alt=raté>
+            </div>
+      </div>
+    </div>
+    
+     <!-- second row -->
+    <div class="row my-5">
+      <div class="col-lg-6  mx-auto py-3 rounded text-center" data-aos="flip-up" data-aos-duration="1000">
+        <h4 class="mb-4">Map</h4>
+        <div id="map" data-my_data="" class="imageContent border-1 my-3">
+          displaying map
+        </div>
+      </div>
+      <div class="col-lg-5  mx-auto my-2 py-3 text-center text-white" data-aos="flip-down" data-aos-duration="1000">
+        <h4 class="mb-4 text-dark">Graph(hist)</h4>
+          <div class="imageContent shadow-lg" id="image_bg" >
+            <img src="{{ img.1 }}" class="sshadow-lg" alt="rate">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="clickBtn text-center">
+    <a href="/home" class="btn btn-outline-success mb-5 btn-lg" role="button">Go Back</a>
+  </div>
+</div>
+
+<script>
+  var data_to_map = {{data|safe}};
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6lyRej85oh6sIiC_xmwx9jjhLdXj9OEk&callback=initMap&v=weekly" defer></script>
+<script src="/static/js/arrondissements.js"></script> 
+<script src="/static/js/script_q1.js"></script>
+{%endblock%}
+
+
+
+{%block Footer %}
+{% load bootstrap_icons %}
+<footer class="text-center text-lg-start text-white" style="background: rgba(0, 0, 0, 0.2)" >
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Links -->
+    <section>
+      <!--Grid row-->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">
+            NOTRE CLIENT: 
+          </h6>
+          <P>GRETA YVELINES</P>
+          <p>Gilles Veronie</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-white foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold ">TASKS</h6>
+          <p>Extraction/nettoyage des donnees</p>
+          <p>Cartographie</p>
+          <p>Exploitation des donnees</p>
+          <p>Front(Django)</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">TEAM MEMBER</h6>
+          <p> Nicolas.C(chef de projet) <br> et Damien</p>
+          <p>Frantz et Djensen</p>
+          <p> Nicolas.T</p>
+          <br>
+          <p>Gabriel et Rangdol</p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+          <!-- Facebook -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #3b5998"
+              href="#!"
+              role="button"
+              ><i class="bi bi-facebook"></i
+            ></a>
+
+          <!-- Twitter -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #55acee"
+              href="#!"
+              role="button"
+              ><i class="bi bi-twitter"></i
+            ></a>
+
+          <!-- Google -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #dd4b39"
+              href="#!"
+              role="button"
+              ><i class="bi bi-google"></i
+            ></a>
+
+          <!-- Instagram -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #ac2bac"
+              href="#!"
+              role="button"
+              ><i class="bi bi-instagram"></i
+            ></a>
+
+          <!-- Linkedin -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #0082ca"
+              href="#!"
+              role="button"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+          <!-- Github -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #333333"
+              href="#!"
+              role="button"
+              ><i class="bi bi-github"></i
+            ></a>
+        </div>
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+    © 2022 Copyright:
+    <a class="text-white" href="/home"
+        > <span class="foot-p">Anomalie Paris Project and All right Reserved </span></a
+      >
+  </div>
+  <!-- Copyright -->
+</footer>
+{%endblock%}

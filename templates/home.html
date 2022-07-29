@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+<!-- page title -->
+  {%block pageTitle%}Anomalies Project Home {%endblock%}
+
+<!-- page header -->
+{%block headerTitle%}
+<div class="logoTab contentHead">
+  <div class="container p-0 text-center" data-aos="zoom-out-right" data-aos-duration="1000">
+    <div class="row p-0 ">
+      <div class="">
+        <div class="col-auto mx-auto p-2">
+          <div class="logo">
+            <a href="/" >
+              <img src="../static/image/paris.png" alt="">
+            </a>
+          </div>
+        </div>
+        <div class="col-auto text-sm-center mx-auto bg-warning bg-opacity-75">
+          <h1 class="bounce-in-top fw-bolder"><span>A</span>nomalie Paris</h1>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{%endblock%}
+
+<!-- body content -->
+{%block Content%}
+  <div class="homeContent">
+    <div class="container">
+      <div class="row">
+        <div class="colHome col-md-3 col-lg-3 mx-auto mt-5 p-3 rounded  slide-in-elliptic-top-fwd bg-opacity-75 text-bg-dark text-center">
+          <p>
+            Quelles sont les années pour lesquelles il y a le plus / le moins d’anomalies signalées par arrondissement ?
+          </p>
+          <a href="/question1" class="btn btn-outline-light" role="button">One</a>
+        </div>
+  
+        <div class="colHome col-md-3 col-lg-3 mx-auto mt-5 p-3 rounded slide-in-elliptic-top-fwd bg-opacity-75 text-bg-dark text-center">
+          <p>
+            Quels sont les mois pour lesquels il y a le plus / le moins d’anomalies signalées, par type d’anomalie ?
+          </p>
+          <a href="/question2" class="btn btn-outline-light" role="button">Two</a>
+        </div>
+  
+        <div class="colHome col-md-3 col-lg-3 mx-auto mt-3 mt-5 p-3 rounded slide-in-elliptic-top-fwd bg-opacity-75  text-bg-dark text-center">
+          <p>
+            Quel(s) arrondissement(s) comportent le plus / le moins d’anomalies signalées, par type d’anomalies ?
+          </p>
+          <a href="/question3" class="btn btn-outline-light" role="button">Three</a>
+        </div>
+      </div>
+
+      <!-- image -->
+      <div class="row mt-5 pt-5">
+        <div class="col-md-5 col-lg-8 mx-auto mt-3 mt-3 text-dark" data-aos="fade-right" data-aos-duration="1000">
+          <h5 class="text-center m-3 fs-4">Notre Client</h5>
+          <p>
+            GRETA YVELINES
+            <br>
+            Gilles Veronie
+            <br>
+          </p>
+          <h5 class="text-center m-3 fs-4">A propose de Nous</h5>
+          <p>
+            Nous sommes une équipe pluridisciplinaire de développeurs multi-talentueux à votre service.
+            <br> <br>
+            Nous collectons, organisons, analysons et valorisons vos données pour vous accompagner dans la création de valeur ajoutée.
+          </p>
+        </div>
+        <div class="col-md-5 col-lg-4 mx-auto mt-3" data-aos="fade-left" data-aos-duration="1000">
+          <div class="homeImg">
+            <img src="https://images.pexels.com/photos/1308940/pexels-photo-1308940.jpeg?auto=compress&cs=tinysrgb&w=1600" class="shadow-sm" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    AOS.init();
+  </script>
+{% endblock %}
+
+
+
+
+{%block Footer %}
+{% load bootstrap_icons %}
+<footer class="text-center text-lg-start text-white" style="background: rgba(0, 0, 0, 0.2)" >
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Links -->
+    <section>
+      <!--Grid row-->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">
+            NOTRE CLIENT: 
+          </h6>
+          <P>GRETA YVELINES</P>
+          <p>Gilles Veronie</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-white foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold ">TASKS</h6>
+          <p>Extraction/nettoyage des donnees</p>
+          <p>Cartographie</p>
+          <p>Exploitation des donnees</p>
+          <p>Front(Django)</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">TEAM MEMBER</h6>
+          <p> Nicolas.C(chef de projet) <br> et Damien</p>
+          <p>Frantz et Djensen</p>
+          <p> Nicolas.T</p>
+          <br>
+          <p>Gabriel et Rangdol</p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+          <!-- Facebook -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #3b5998"
+              href="#!"
+              role="button"
+              ><i class="bi bi-facebook"></i
+            ></a>
+
+          <!-- Twitter -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #55acee"
+              href="#!"
+              role="button"
+              ><i class="bi bi-twitter"></i
+            ></a>
+
+          <!-- Google -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #dd4b39"
+              href="#!"
+              role="button"
+              ><i class="bi bi-google"></i
+            ></a>
+
+          <!-- Instagram -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #ac2bac"
+              href="#!"
+              role="button"
+              ><i class="bi bi-instagram"></i
+            ></a>
+
+          <!-- Linkedin -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #0082ca"
+              href="#!"
+              role="button"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+          <!-- Github -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #333333"
+              href="#!"
+              role="button"
+              ><i class="bi bi-github"></i
+            ></a>
+        </div>
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+    © 2022 Copyright:
+    <a class="text-white" href="/home"
+        > <span class="foot-p">Anomalie Paris Project and All right Reserved </span></a
+      >
+  </div>
+  <!-- Copyright -->
+</footer>
+{%endblock%}

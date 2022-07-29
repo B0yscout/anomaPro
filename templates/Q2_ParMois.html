@@ -1,0 +1,362 @@
+{% extends 'base.html' %}
+
+<!-- page Title -->
+{% block pageTitle%} Anomalie and Arrondissement Par Mois {%endblock%}
+
+<!-- page header -->
+{% block headerTitle%}
+<div class="logoTab">
+  <div class="container my-4 text-center mx-auto d-flex flex-row align-items-center justify-content-center pe-5">
+    <h2 class="semi-bold">Anomalie</h2>
+    <div class="logo mx-3">
+      <a href="/">
+        <img src="https://cdn.dribbble.com/users/2524031/screenshots/13961394/media/fe0cbee48954b7335a47e539c3e2579a.png?compress=1&resize=1000x750&vertical=top"  alt="">
+      </a>
+    </div>
+    <h2 class="semi-bold me-5">Paris</h2>
+  </div>
+</div>
+{%endblock%}
+
+
+<!-- page header Content -->
+{%block headerContent%}
+<div class="container sticky-top my-4 p-2 bounce-in-top " style="z-index: 90;">
+  <div class="navbar navbar-expand-lg bg-success rounded">
+    <div class="container-fluid">
+      <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <!-- drop down one -->
+        <ul class="navbar-nav my-2 navbar-nav-scroll mx-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Anomalie
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              {% if id == 1 %}
+              {% for type in list_anomalie %}
+              <li><a class="dropdown-item" href="?anomalie={{ type }}"> {{ type }} </a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <!-- dropdown two -->
+          <li class="nav-item dropdown mx-5">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Arrondissement
+            </a>
+            <ul class="dropdown-menu menu1" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="/question2/1">1er Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/2">2e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/3">3e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/4">4e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/5">5e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/6">6e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/7">7e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/8">8e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/9">9e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/10">10e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/11">11e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/12">12e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/13">13e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/14">14e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/15">15e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/16">16e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/17">17e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/18">18e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/19">19e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/20">20e Arrondissement</a></li>
+              {% elif id == 0 %}
+              {% for type in list_anomalie %}
+              <li><a class="dropdown-item" href="?anomalie={{ type }}"> {{ type }} </a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <!-- dropdown two -->
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Arrondissement
+            </a>
+            <ul class="dropdown-menu menu1" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="/question2/1/?anomalie={{ anomalie }}">1er Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/2/?anomalie={{ anomalie}}">2e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/3/?anomalie={{ anomalie}}">3e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/4/?anomalie={{ anomalie}}">4e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/5/?anomalie={{ anomalie}}">5e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/6/?anomalie={{ anomalie}}">6e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/7/?anomalie={{ anomalie}}">7e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/8/?anomalie={{ anomalie}}">8e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/9/?anomalie={{ anomalie}}">9e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/11/?anomalie={{ anomalie }}">11e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/12/?anomalie={{ anomalie }}">12e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/10/?anomalie={{ anomalie }}">10e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/13/?anomalie={{ anomalie }}">13e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/14/?anomalie={{ anomalie }}">14e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/15/?anomalie={{ anomalie }}">15e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/16/?anomalie={{ anomalie }}">16e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/17/?anomalie={{ anomalie }}">17e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/18/?anomalie={{ anomalie }}">18e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/19/?anomalie={{ anomalie ]]">19e Arrondissement</a></li>
+              <li><a class="dropdown-item" href="/question2/20/?anomalie={{ anomalie }}">20e Arrondissement</a></li>
+            {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
+
+<!-- page body -->
+{% block Content%}
+
+<div class="modelImage h-100" style="z-index: 100;">
+  <div class="container d-flex align-items-center justify-content-center">
+      <div class="fullImage text-white p-5 w-50 h-50">
+        <img src="" class="imgShow" alt="">
+      </div>
+  </div>
+</div>
+
+<div class="heading">
+  <div class="container">
+    {% if id == 0 %}
+      <div class="info bg-dark bg-opacity-10 p-3 rounded">
+        <h5 class="fw-semibold">Recensement</h5>
+        <div class=" ps-4 mt-3">
+          <p>Le Projet dans ma rue a été mis à disposition des parisiens à partir de Mars 2021.
+          </p>
+          <p>Pic d'anomalies signalé dans le {{ pk }}ème arrondiseement en {{ max_val.1 }} avec {{ max_val.0 }} d'anomalies pour {{anomalie}}  en {{ max_key }}.
+          </p>
+          <p>Tandis que le mois de {{ min_val.1 }} est celui avec le mois d'anomalies pour {{anomalie}} signalés avec {{ min_val.0 }} relevés en {{ min_key }}.
+          </p>
+        </div>
+      </div>
+    {% elif id == 1 %}
+      <div class="info bg-dark bg-opacity-10 p-3 rounded">
+        <h4>Recensement</h4>
+        <div class="ps-4 mt-3">
+          <p>Le Projet dans ma rue a été mis à disposition des parisiens à partir de Mars 2021.
+          </p>
+          <p>Pic d'anomalies signalé dans le {{ pk }}ème arrondiseement en {{ max_val.1 }} avec {{ max_val.0 }} d'anomalies en {{ max_key }}.
+          </p>
+          <p>Tandis que le mois de {{ min_val.1 }} est celui avec le mois d'anomalies signalés avec {{ min_val.0 }} relevés en {{ min_key }}.
+          </p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="container">
+  <div class="contentOne">
+    <div class="row">
+      <div class="col-lg-7 mx-2 my-5 rounded mx-auto">
+        <table class="table my-2 p-2 text-dark text-center table-hover">
+          <thead class="bg-success text-white">
+            <th class="ps-0">mois de declaration</th>
+            <th>2021</th>
+            <th>2022</th>
+          </thead>
+          <tbody>
+            {% if id == 0 %}
+            {% for key, value in data_type.items %} 
+                    <tr>
+                    <td>{{ key }}</th>
+                    {% for year, qty in value.items %}
+                        <td>{{ qty }}</th>
+                    {% endfor %}  
+                    </tr>
+                {% endfor %} 
+          {% elif id == 1 %}
+          {% for i in data %}
+            <tr>
+              <td>{{ i.mois_declaration }}</td>
+              <td>{{ i.2021 }}</td>
+              <td>{{ i.2022 }}</td>
+            </tr>
+          {% endfor %}
+          {% endif %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      {% if id == 0 %}
+      <div class="col-lg-5 my-5 rounded mx-auto text-center" id="image_bg">
+        <h5 class="fw-semibold mb-3">Graphe(hist)</h5>
+        <img src = '{{ img.0 | safe}}' class="img-thumbnail shadow-sm" alt=raté>
+      </div>
+      <div class="col-lg-5 rounded my-5 mx-auto text-center" id="image_bg">
+        <h5 class="fw-semibold mb-3">Graphe(pie)</h5>
+        <img src = '{{ img.1 | safe }}' class="img-thumbnail shadow-sm" alt=raté>
+      </div>
+      {% elif id == 1 %}
+      <div class="col-lg-5 rounded my-5 mx-auto text-center" id="image_bg">
+        <h5 class="fw-semibold mb-3">Graphe(hist)</h5>
+        <img src = '{{ img.0 | safe}}' class="img-thumbnail shadow-sm" alt=raté>
+      </div>
+      <div class="col-lg-5 rounded my-5 mx-auto text-center" id="image_bg">
+        <h5 class="fw-semibold mb-3">Graphe(pie)</h5>
+        <img src = '{{ img.1 | safe }}' class="img-thumbnail shadow-lg" alt=raté>
+      </div>
+      {% endif %}
+    </div>
+    <div class="clickBtn text-center my-5">
+      <a href="/home" class="btn btn-outline-success my-3 btn-lg" role="button">Go Back</a>
+    </div>
+  </div>
+</div>
+<!-- js -->
+<script src="../static/js/script_q1.js"></script>
+
+<script>
+const imagesPie = document.querySelectorAll("#image_bg img")
+const model = document.querySelector(".modelImage")
+const fullImg = document.querySelector(".imgShow")
+
+imagesPie.forEach(image => {
+  image.addEventListener('click', ()=> {
+    model.classList.add("open");
+
+    fullImg.src = image.src
+  })
+})
+
+model.addEventListener("click", e=> {
+  if(e.target != this.target) {
+    model.classList.remove("open");
+  }
+})
+</script>
+{%endblock%}
+
+
+
+
+{%block Footer %}
+{% load bootstrap_icons %}
+<footer class="text-center text-lg-start text-white" style="background: rgba(0, 0, 0, 0.2)" >
+  <!-- Grid container -->
+  <div class="container p-4 pb-0">
+    <!-- Section: Links -->
+    <section>
+      <!--Grid row-->
+      <div class="row">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">
+            NOTRE CLIENT: 
+          </h6>
+          <P>GRETA YVELINES</P>
+          <p>Gilles Veronie</p> 
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-white foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold ">TASKS</h6>
+          <p>Extraction/nettoyage des donnees</p>
+          <p>Cartographie</p>
+          <p>Exploitation des donnees</p>
+          <p>Front(Django)</p>
+        </div>
+        <!-- Grid column -->
+
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <hr class="w-100 clearfix d-md-none" />
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">TEAM MEMBER</h6>
+          <p> Nicolas.C(chef de projet) <br> et Damien</p>
+          <p>Frantz et Djensen</p>
+          <p> Nicolas.T</p>
+          <br>
+          <p>Gabriel et Rangdol</p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 foot-p">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+          <!-- Facebook -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #3b5998"
+              href="#!"
+              role="button"
+              ><i class="bi bi-facebook"></i
+            ></a>
+
+          <!-- Twitter -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #55acee"
+              href="#!"
+              role="button"
+              ><i class="bi bi-twitter"></i
+            ></a>
+
+          <!-- Google -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #dd4b39"
+              href="#!"
+              role="button"
+              ><i class="bi bi-google"></i
+            ></a>
+
+          <!-- Instagram -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #ac2bac"
+              href="#!"
+              role="button"
+              ><i class="bi bi-instagram"></i
+            ></a>
+
+          <!-- Linkedin -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #0082ca"
+              href="#!"
+              role="button"
+              ><i class="bi bi-linkedin"></i
+            ></a>
+          <!-- Github -->
+          <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #333333"
+              href="#!"
+              role="button"
+              ><i class="bi bi-github"></i
+            ></a>
+        </div>
+      </div>
+      <!--Grid row-->
+    </section>
+    <!-- Section: Links -->
+  </div>
+  <!-- Grid container -->
+
+  <!-- Copyright -->
+  <div
+        class="text-center p-3"
+        style="background-color: rgba(0, 0, 0, 0.2)"
+        >
+    © 2022 Copyright:
+    <a class="text-white" href="/home"
+        > <span class="foot-p">Anomalie Paris Project and All right Reserved </span></a
+      >
+  </div>
+  <!-- Copyright -->
+</footer>
+{%endblock%}
