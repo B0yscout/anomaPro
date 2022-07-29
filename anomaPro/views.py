@@ -79,9 +79,16 @@ def getMax_Min(df3):
 ################################ Filtrage de la DATABASE ##########################################################################################################*
 
 # lecture du CSV et gestion des caractères spéciaux
+print("importing CSV...")
 df = pandas.read_csv(r"dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
+print("imported CSV : ")
+print(df.shape)
+
 # on retire les colonnes inutiles :
 df2 = df.drop(columns = ['ID DECLARATION','SOUS TYPE DECLARATION','ADRESSE','CODE POSTAL', 'VILLE','CONSEIL DE QUARTIER','DATE DECLARATION','OUTIL SOURCE','INTERVENANT','ID_DMR','geo_shape'], axis=1)
+print("Dropped unused columns : ")
+print(df.shape)
+
 # transformer noms de col en minuscules :
 df2.columns = df2.columns.str.lower()
 # remplacer espaces par _ :
