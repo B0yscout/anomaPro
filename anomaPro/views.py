@@ -80,7 +80,7 @@ def getMax_Min(df3):
 
 # lecture du CSV et gestion des caractères spéciaux
 print("importing CSV...")
-df = pandas.read_csv(r"dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
+df = pandas.read_csv(r"static/dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
 print("imported CSV : ")
 print(df.shape)
 
