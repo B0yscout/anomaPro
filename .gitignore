@@ -38,6 +38,3 @@ Thumbs.db
 
 # Cahier d'incidents #
 incidents.txt
-
-# CSV data files
-*.csv
