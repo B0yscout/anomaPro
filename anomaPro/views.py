@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
+from django.db import DataError
 import pandas
 import csv
 import numpy as np
@@ -80,7 +81,12 @@ def getMax_Min(df3):
 
 # lecture du CSV et gestion des caractères spéciaux
 print("importing CSV...")
-df = pandas.read_csv(r"static/dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
+try:
+  df = pandas.read_csv(r"static/dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8")
+except DataError as err:
+  print(f'something went wrong with csv_read: {err}')
+
+
 print("imported CSV : ")
 print(df.shape)
 
