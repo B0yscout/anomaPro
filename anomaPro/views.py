@@ -79,6 +79,21 @@ def getMax_Min(df3):
 ###################################################################################################################################################################
 ################################ Filtrage de la DATABASE ##########################################################################################################*
 
+# check first lines of the csv
+print("check 5 first lines of the csv file:")
+with open("static/dans-ma-rue.csv") as file_obj:
+    # Create reader object by passing the file 
+    # object to reader method
+    reader_obj = csv.reader(file_obj)
+      
+    # Iterate over each row in the csv 
+    # file using reader object
+    # itertools.islice(csv.DictReader(csvfile), 100)
+    for index, row in enumerate(reader_obj) :
+        if index >= 5:
+          break
+        print(row)
+
 # lecture du CSV et gestion des caractères spéciaux
 print("importing CSV...")
 try:
