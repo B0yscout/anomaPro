@@ -38,3 +38,6 @@ Thumbs.db
 
 # Cahier d'incidents #
 incidents.txt
+
+# notebooks jupyter
+*.ipynb

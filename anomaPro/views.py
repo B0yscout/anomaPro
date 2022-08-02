@@ -79,46 +79,41 @@ def getMax_Min(df3):
 ###################################################################################################################################################################
 ################################ Filtrage de la DATABASE ##########################################################################################################*
 
-# check first lines of the csv
-print("check 5 first lines of the csv file:")
-with open("static/dans-ma-rue.csv") as file_obj:
-    # Create reader object by passing the file 
-    # object to reader method
-    reader_obj = csv.reader(file_obj)
-      
-    # Iterate over each row in the csv 
-    # file using reader object
-    # itertools.islice(csv.DictReader(csvfile), 100)
-    for index, row in enumerate(reader_obj) :
-        if index >= 5:
-          break
-        print(row)
 
+#################### IMPORT CSV ####################
+#
 # lecture du CSV et gestion des caractères spéciaux
-print("importing CSV...")
-try: 
-  df = pandas.read_csv(r"static/dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
-  # file id of csv file on drive.google.Com :
-  # file_id = "1r7aL-s9ocNtWasOPzZFFRF1vPS1DO0lL"
-  # url = "https://doc-0o-ao-docs.googleusercontent.com/docs/securesc/4qqddknb2bgo68qdl6ea41ooki315bkp/iem541ijidh38bl89bt13onk6ta9ngpf/1659261300000/15109298847505009387/15109298847505009387/1r7aL-s9ocNtWasOPzZFFRF1vPS1DO0lL?e=download&ax=AI9vYm7xsneqbfqEfuOvrcyxWqiEvG-IIBnnIYWd1TwdHnFLLaa7KqfjUdLgTBUbT7WticXU2r6ssC7yr1RiCog1ztqw9nJXFgaayTYu9Sp40HuL0QmWycF-BmjIh6aajdtgcb864eCl0jp28X6KGORdmmMh4zKNFopih0JWIBxgYGWsSdRFPKu8xhf5nHPT2qAeV1RzI2ycj09AXz23rJgx3u1FwBzf9HB_antaEOK5HttOeQ5y5Wit1uny6PCzsF4Zc2ZrGCpMIqq7eKX5iHm8Qwch9UXuxHpp2Cha4febm_AFS0bFAKg56pYJEpsSuDPd-sl6QTGAj_sFnjjSbfUKJVwY4To0GqKJT026DpkAwJe2HO5iyiNLc12N4Y7ubUx8KYOmeKQamk5pu61doWASkgnuwcq9c7hqQjMCaSdR81kHCdnQTdMtS30ZDDSPV8cn7nF7OOXIpmwKLuRSUWHYpPSG6Glkc1MqOq1uI-lcx51r7BmUEdDmX4orsh6C0AY5oJZncgvl5VfTrxbl086WXOVRZ4Tx60Dmsvxyslxy8iisqrs9q5ohvIWjSsE_a3F9tbVHUKLK4qO5zYsPx2khn5alpu6v1mhub9VxB6r0skDgrwC7DsWCIJ8OMf04yRD-B6Wl1RoVLkWVK5-1wMJasTLXvQSl0md0ZWBmHS-lTrEAYYxngM-z3dGU1XUI9In9O59B0ri5Ikmu_g&uuid=ed1b6fd6-1e82-420a-b803-cb684bba1884&authuser=0&nonce=oc8bu8te7r560&user=15109298847505009387&hash=bidfi3sigsqdtsop6qd173ddgptvmnto"
-  # df = pandas.read_csv(url, sep=';',header = 0,encoding="utf-8") 
-except DataError as err:
-  print(f'something went wrong with csv_read: {err}')
 
-
-print("imported CSV : ")
-print(df.shape)
+# fichier local : 
+# df = pandas.read_csv(r"dans-ma-rue.csv", sep=';',header = 0,encoding="utf-8") 
 
 # on retire les colonnes inutiles :
-df2 = df.drop(columns = ['ID DECLARATION','SOUS TYPE DECLARATION','ADRESSE','CODE POSTAL', 'VILLE','CONSEIL DE QUARTIER','DATE DECLARATION','OUTIL SOURCE','INTERVENANT','ID_DMR','geo_shape'], axis=1)
-print("Dropped unused columns : ")
-print(df.shape)
+# df2 = df.drop(['ID DECLARATION','SOUS TYPE DECLARATION','ADRESSE','CODE POSTAL', 'VILLE',
+  # 'CONSEIL DE QUARTIER','DATE DECLARATION','OUTIL SOURCE','INTERVENANT','ID_DMR','geo_shape'], axis=1)
 
-# transformer noms de col en minuscules :
-df2.columns = df2.columns.str.lower()
-# remplacer espaces par _ :
-df2.columns = df2.columns.str.replace(" ","_") # remplacer espaces dans les noms de colonnes par _
-df2['type_declaration'] = df2['type_declaration'].replace(['Éclairage / Électricité'],'Éclairage ou Électricité')
+# # transformer noms de col en minuscules :
+# df2.columns = df2.columns.str.lower()
+# # remplacer espaces par _ :
+# df2.columns = df2.columns.str.replace(" ","_") # remplacer espaces dans les noms de colonnes par _
+# df2['type_declaration'] = df2['type_declaration'].replace(['Éclairage / Électricité'],'Éclairage ou Électricité')
+
+#################### LOAD PICKLE ####################
+#
+# New
+# build df2 from pickled file
+# 1 : load all data files into variables (dataframes)
+with open('data_2021.dat', 'rb') as file:
+  df2_1 = pandas.read_pickle(file)
+  print(df2_1.shape)
+with open('data_2022.dat', 'rb') as file:
+  df2_2 = pandas.read_pickle(file)
+  print(df2_2.shape)
+
+# 2 : concatenate both df into one df called df2
+df2 = pandas.concat([df2_1,df2_2])
+print(df2.shape)
+
+
 
 #Liste des Types d'Anomalies pour crée les menu déroulants
 list_anomalie= ['Objets abandonnés', 'Graffitis, tags, affiches et autocollants',
